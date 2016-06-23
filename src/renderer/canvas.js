@@ -3,7 +3,7 @@
  * @param {DOMElement} el      DOM element to host the canvas (root of the plugin)
  * @param {object}     options options object of the plugin
  */
-var CanvasRenderer = function(el, options) {
+var CanvasRenderer = function (el, options) {
 	var cachedBackground;
 	var canvas = document.createElement('canvas');
 
@@ -38,9 +38,9 @@ var CanvasRenderer = function(el, options) {
 	}
 
 	// IE polyfill for Date
-	Date.now = Date.now || function() {
-		return +(new Date());
-	};
+	Date.now = Date.now || function () {
+			return +(new Date());
+		};
 
 	/**
 	 * Draw a circle around the center of the canvas
@@ -48,9 +48,9 @@ var CanvasRenderer = function(el, options) {
 	 * @param {number} lineWidth Width of the line in px
 	 * @param {number} percent   Percentage to draw (float between -1 and 1)
 	 */
-	var drawCircle = function(color, lineWidth, percent) {
+	var drawCircle = function (color, lineWidth, percent) {
 		percent = Math.min(Math.max(-1, percent || 0), 1);
-		var isNegative = percent <= 0 ? true : false;
+		var isNegative = percent <= 0;
 
 		ctx.beginPath();
 		ctx.arc(0, 0, radius, 0, Math.PI * 2 * percent, isNegative);
@@ -64,7 +64,7 @@ var CanvasRenderer = function(el, options) {
 	/**
 	 * Draw the scale of the chart
 	 */
-	var drawScale = function() {
+	var drawScale = function () {
 		var offset;
 		var length;
 
@@ -80,7 +80,7 @@ var CanvasRenderer = function(el, options) {
 				length = options.scaleLength * 0.6;
 				offset = options.scaleLength - length;
 			}
-			ctx.fillRect(-options.size/2 + offset, 0, length, 1);
+			ctx.fillRect(-options.size / 2 + offset, 0, length, 1);
 			ctx.rotate(Math.PI / 12);
 		}
 		ctx.restore();
@@ -90,41 +90,41 @@ var CanvasRenderer = function(el, options) {
 	 * Request animation frame wrapper with polyfill
 	 * @return {function} Request animation frame method or timeout fallback
 	 */
-	var reqAnimationFrame = (function() {
-		return  window.requestAnimationFrame ||
-				window.webkitRequestAnimationFrame ||
-				window.mozRequestAnimationFrame ||
-				function(callback) {
-					window.setTimeout(callback, 1000 / 60);
-				};
+	var reqAnimationFrame = (function () {
+		return window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame ||
+			function (callback) {
+				window.setTimeout(callback, 1000 / 60);
+			};
 	}());
 
 	/**
 	 * Draw the background of the plugin including the scale and the track
 	 */
-	var drawBackground = function() {
-		if(options.scaleColor) drawScale();
-		if(options.trackColor) drawCircle(options.trackColor, options.trackWidth || options.lineWidth, 1);
+	var drawBackground = function () {
+		if (options.scaleColor) drawScale();
+		if (options.trackColor) drawCircle(options.trackColor, options.trackWidth || options.lineWidth, 1);
 	};
 
-  /**
-    * Canvas accessor
-   */
-  this.getCanvas = function() {
-    return canvas;
-  };
+	/**
+	 * Canvas accessor
+	 */
+	this.getCanvas = function () {
+		return canvas;
+	};
 
-  /**
-    * Canvas 2D context 'ctx' accessor
-   */
-  this.getCtx = function() {
-    return ctx;
-  };
+	/**
+	 * Canvas 2D context 'ctx' accessor
+	 */
+	this.getCtx = function () {
+		return ctx;
+	};
 
 	/**
 	 * Clear the complete canvas
 	 */
-	this.clear = function() {
+	this.clear = function () {
 		ctx.clearRect(options.size / -2, options.size / -2, options.size, options.size);
 	};
 
@@ -132,7 +132,7 @@ var CanvasRenderer = function(el, options) {
 	 * Draw the complete chart
 	 * @param {number} percent Percent shown by the chart between -100 and 100
 	 */
-	this.draw = function(percent) {
+	this.draw = function (percent) {
 		// do we need to render a background
 		if (!!options.scaleColor || !!options.trackColor) {
 			// getImageData and putImageData are supported
@@ -162,7 +162,10 @@ var CanvasRenderer = function(el, options) {
 		}
 
 		// draw bar
-		drawCircle(color, options.lineWidth, percent / 100);
+		if (options.borderSize) {
+			drawCircle('black' || options.borderColor || color, options.lineWidth, percent / 100);
+		}
+		drawCircle(color, options.lineWidth - (options.borderSize || 0), percent / 100);
 	}.bind(this);
 
 	/**
@@ -170,10 +173,10 @@ var CanvasRenderer = function(el, options) {
 	 * @param {number} from Starting percentage
 	 * @param {number} to   Final percentage
 	 */
-	this.animate = function(from, to) {
+	this.animate = function (from, to) {
 		var startTime = Date.now();
 		options.onStart(from, to);
-		var animation = function() {
+		var animation = function () {
 			var process = Math.min(Date.now() - startTime, options.animate.duration);
 			var currentValue = options.easing(this, process, from, to - from, options.animate.duration);
 			this.draw(currentValue);

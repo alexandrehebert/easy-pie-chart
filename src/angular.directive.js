@@ -4,7 +4,7 @@
 
 	return angular.module('easypiechart', [])
 
-		.directive('easypiechart', [function() {
+		.directive('easypiechart', [function () {
 			return {
 				restrict: 'AE',
 				require: '?ngModel',
@@ -22,12 +22,14 @@
 					 */
 					var options = {
 						barColor: '#ef1e25',
+						borderColor: 'black',
 						trackColor: '#f9f9f9',
 						scaleColor: '#dfe0e0',
 						scaleLength: 5,
 						lineCap: 'round',
 						lineWidth: 3,
 						size: 110,
+						borderSize: 0,
 						rotate: 0,
 						animate: {
 							duration: 1000,
@@ -38,7 +40,7 @@
 
 					var pieChart = new EasyPieChart(element[0], options);
 
-					scope.$watch('percent', function(newVal, oldVal) {
+					scope.$watch('percent', function (newVal, oldVal) {
 						pieChart.update(newVal);
 					});
 				}

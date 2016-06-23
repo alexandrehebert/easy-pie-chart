@@ -1,6 +1,7 @@
-var EasyPieChart = function(el, opts) {
+var EasyPieChart = function (el, opts) {
 	var defaultOptions = {
 		barColor: '#ef1e25',
+		borderColor: 'black',
 		trackColor: '#f9f9f9',
 		scaleColor: '#dfe0e0',
 		scaleLength: 5,
@@ -8,25 +9,26 @@ var EasyPieChart = function(el, opts) {
 		lineWidth: 3,
 		trackWidth: undefined,
 		size: 110,
+		borderSize: 0,
 		rotate: 0,
 		animate: {
 			duration: 1000,
 			enabled: true
 		},
 		easing: function (x, t, b, c, d) { // more can be found here: http://gsgd.co.uk/sandbox/jquery/easing/
-			t = t / (d/2);
+			t = t / (d / 2);
 			if (t < 1) {
 				return c / 2 * t * t + b;
 			}
-			return -c/2 * ((--t)*(t-2) - 1) + b;
+			return -c / 2 * ((--t) * (t - 2) - 1) + b;
 		},
-		onStart: function(from, to) {
+		onStart: function (from, to) {
 			return;
 		},
-		onStep: function(from, to, currentValue) {
+		onStep: function (from, to, currentValue) {
 			return;
 		},
-		onStop: function(from, to) {
+		onStop: function (from, to) {
 			return;
 		}
 	};
@@ -46,7 +48,7 @@ var EasyPieChart = function(el, opts) {
 	/**
 	 * Initialize the plugin by creating the options object and initialize rendering
 	 */
-	var init = function() {
+	var init = function () {
 		this.el = el;
 		this.options = options;
 
@@ -101,7 +103,7 @@ var EasyPieChart = function(el, opts) {
 	 * @param  {number} newValue Number between 0 and 100
 	 * @return {object}          Instance of the plugin for method chaining
 	 */
-	this.update = function(newValue) {
+	this.update = function (newValue) {
 		newValue = parseFloat(newValue);
 		if (options.animate.enabled) {
 			this.renderer.animate(currentValue, newValue);
@@ -116,7 +118,7 @@ var EasyPieChart = function(el, opts) {
 	 * Disable animation
 	 * @return {object} Instance of the plugin for method chaining
 	 */
-	this.disableAnimation = function() {
+	this.disableAnimation = function () {
 		options.animate.enabled = false;
 		return this;
 	};
@@ -125,7 +127,7 @@ var EasyPieChart = function(el, opts) {
 	 * Enable animation
 	 * @return {object} Instance of the plugin for method chaining
 	 */
-	this.enableAnimation = function() {
+	this.enableAnimation = function () {
 		options.animate.enabled = true;
 		return this;
 	};
