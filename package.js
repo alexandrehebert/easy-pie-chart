@@ -1,8 +1,8 @@
 Package.describe({
-	name: 'rendro:easy-pie-chart',
-	version: '2.1.7',
+	name: 'alexandrehebert:easy-pie-chart',
+	version: '3.0.0',
 	summary: 'Meteor package for jQuery easyPieChart plugin!',
-	git: 'https://github.com/dotansimha/easy-pie-chart.git',
+	git: 'https://github.com/alexandrehebert/easy-pie-chart.git',
 	documentation: null
 });
 
@@ -15,5 +15,5 @@ Package.onUse(function (api) {
 
 Package.onTest(function (api) {
 	api.use('tinytest');
-	api.use('rendro:easy-pie-chart');
+	api.use('alexandrehebert:easy-pie-chart');
 });

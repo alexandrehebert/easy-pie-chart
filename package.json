@@ -18,7 +18,7 @@
       "url": "http://www.opensource.org/licenses/gpl-license.php"
     }
   ],
-  "version": "2.1.7",
+  "version": "3.0.0",
   "main": "dist/easypiechart.js",
   "author": {
     "name": "Robert Fleischmann",
@@ -28,13 +28,16 @@
   "contributors": [{
     "name": "Moritz",
     "url": "https://github.com/mrzmyr"
+  }{
+    "name": "Alexandre HEBERT",
+    "url": "https://github.com/alexandrehebert"
   }],
   "scripts": {
     "test": "grunt karma:ci"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rendro/easy-pie-chart.git"
+    "url": "https://github.com/alexandrehebert/easy-pie-chart.git"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

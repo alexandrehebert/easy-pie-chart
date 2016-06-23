@@ -1,5 +1,9 @@
 # Changlog
 
+
+## Version 3.0.0 - June 23, 2016
+* Added border support
+
 ## Version 2.1.7 - May 8, 2015
 * Check type of G_vmlCanvasManager. #138
 
