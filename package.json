@@ -25,13 +25,16 @@
     "email": "rendro87@gmail.com",
     "url": "http://robert-fleischmann.de"
   },
-  "contributors": [{
-    "name": "Moritz",
-    "url": "https://github.com/mrzmyr"
-  }{
-    "name": "Alexandre HEBERT",
-    "url": "https://github.com/alexandrehebert"
-  }],
+  "contributors": [
+    {
+      "name": "Moritz",
+      "url": "https://github.com/mrzmyr"
+    },
+    {
+      "name": "Alexandre HEBERT",
+      "url": "https://github.com/alexandrehebert"
+    }
+  ],
   "scripts": {
     "test": "grunt karma:ci"
   },
