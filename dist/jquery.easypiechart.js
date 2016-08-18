@@ -4,7 +4,7 @@
  *
  * @license 
  * @author Robert Fleischmann <rendro87@gmail.com> (http://robert-fleischmann.de)
- * @version 2.1.7
+ * @version 3.0.0
  **/
 
 (function (root, factory) {
@@ -39,6 +39,7 @@ var CanvasRenderer = function (el, options) {
 	}
 
 	var ctx = canvas.getContext('2d');
+	ctx.imageSmoothingEnabled = true;
 
 	canvas.width = canvas.height = options.size;
 
