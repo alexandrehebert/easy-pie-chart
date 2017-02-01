@@ -18,7 +18,7 @@
       "url": "http://www.opensource.org/licenses/gpl-license.php"
     }
   ],
-  "version": "3.0.0",
+  "version": "4.0.0",
   "main": "dist/easypiechart.js",
   "author": {
     "name": "Robert Fleischmann",
