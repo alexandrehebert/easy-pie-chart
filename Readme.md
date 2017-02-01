@@ -265,4 +265,4 @@ Thanks to [Rafal Bromirski](http://www.paranoida.com/) for designing [this dribb
 
 
 ## Copyright
-Copyright (c) 2016 Robert Fleischmann, contributors. Released under the MIT, GPL licenses
+Copyright (c) 2017 Robert Fleischmann, contributors. Released under the MIT, GPL licenses

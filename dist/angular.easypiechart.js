@@ -19,7 +19,7 @@
     // like Node.
     module.exports = factory(require("angular"));
   } else {
-    factory(angular);
+    factory(root["angular"]);
   }
 }(this, function (angular) {
 
@@ -90,6 +90,9 @@ var CanvasRenderer = function (el, options) {
 	}
 
 	var ctx = canvas.getContext('2d');
+	ctx.mozImageSmoothingEnabled = true;
+	ctx.webkitImageSmoothingEnabled = true;
+	ctx.msImageSmoothingEnabled = true;
 	ctx.imageSmoothingEnabled = true;
 
 	canvas.width = canvas.height = options.size;
